@@ -18,7 +18,7 @@ public class CheckItem extends BaseTest {
         driver.findElement(By.cssSelector("[class='shopping_cart_link']")).click();
         WebElement shirtInBasket = driver.findElement(By.xpath("//div[@class='inventory_item_name']"));
         WebElement priceInBasket = driver.findElement(By.xpath("//div[@class='inventory_item_price']"));
-        Assert.assertEquals(shirtText, shirtInBasket.getText());
-        Assert.assertEquals(shirtPrice, priceInBasket.getText());
+        Assert.assertEquals(shirtInBasket.getText(), shirtText);
+        Assert.assertEquals(priceInBasket.getText(), shirtPrice);
     }
 }
