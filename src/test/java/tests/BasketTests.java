@@ -14,11 +14,9 @@ public class BasketTests extends BaseTest {
         productsPage.clickAddToCartButton("Sauce Labs Backpack");
         productsPage.clickAddToCartButton("Sauce Labs Fleece Jacket");
         productsPage.openBasket();
-        List<WebElement> numberOfItemsInBasket = driver.findElements(By.className("cart_item"));
-        int size = numberOfItemsInBasket.size();
+        int initialCount = basketPage.countNumberOfItemsInBasket();
         basketPage.removeItemByName("Sauce Labs Backpack");
-        numberOfItemsInBasket = driver.findElements(By.className("cart_item"));
-        Assert.assertEquals(numberOfItemsInBasket.size(), size - 1);
+        Assert.assertEquals(basketPage.countNumberOfItemsInBasket(), initialCount - 1);
     }
 
     @Test

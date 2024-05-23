@@ -1,6 +1,5 @@
 package tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,6 +13,6 @@ public class CheckoutTests extends BaseTest {
         checkoutPage.setUser("Ulad", "Haiko", "220045");
         checkoutPage.clickContinueButton();
         checkoutPage.clickFinishButton();
-        Assert.assertEquals(driver.findElement(By.className("complete-header")).getText(),"Thank you for your order!");
+        Assert.assertTrue(checkoutPage.isOrderConfirmationButtonIsDisplayed());
     }
 }

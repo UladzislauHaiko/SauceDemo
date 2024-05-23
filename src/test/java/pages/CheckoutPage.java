@@ -11,6 +11,7 @@ public class CheckoutPage extends BasePage {
     private static final By CANCEL_BUTTON = By.id("continue-shopping");
     private static final By CONTINUE_BUTTON = By.id("continue");
     private static final By FINISH_BUTTON = By.id("finish");
+    private static final By ORDER_CONFIRMATION_BUTTON = By.className("complete-header");
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -19,11 +20,17 @@ public class CheckoutPage extends BasePage {
     public boolean isFirstNameDisplayed() {
         return this.driver.findElement(FIRST_NAME).isDisplayed();
     }
-    public void clickContinueButton(){
+
+    public void clickContinueButton() {
         driver.findElement(CONTINUE_BUTTON).click();
     }
-    public void clickFinishButton(){
+
+    public void clickFinishButton() {
         driver.findElement(FINISH_BUTTON).click();
+    }
+
+    public boolean isOrderConfirmationButtonIsDisplayed() {
+        return this.driver.findElement(ORDER_CONFIRMATION_BUTTON).isDisplayed();
     }
 
     public void setFirstName(String firstName) {
