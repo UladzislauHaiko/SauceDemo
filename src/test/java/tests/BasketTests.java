@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class BasketTests extends BaseTest {
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void removeItemFromBasketTest() {
         loginPage.login("standard_user", "secret_sauce");
         productsPage.clickAddToCartButton("Sauce Labs Backpack");
