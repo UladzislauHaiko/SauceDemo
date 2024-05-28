@@ -7,7 +7,7 @@ import pages.LoginPage;
 import pages.ProductsPage;
 
 public class LoginTests extends BaseTest {
-    @Test(enabled = false)
+    @Test
     public void positiveLoginTest() {
         loginPage.login("standard_user", "secret_sauce");
         Assert.assertTrue(productsPage.isShoppingCartDisplayed());
