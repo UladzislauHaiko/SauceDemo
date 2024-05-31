@@ -2,6 +2,7 @@ package tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.*;
 import pages.*;
 
@@ -17,8 +18,13 @@ public class BaseTest {
     protected CheckoutPage checkoutPage;
 
     @BeforeClass(alwaysRun = true)
-    public void setUp() {
-        this.driver = new ChromeDriver();
+    @Parameters({"browserName"})
+    public void setUp(@Optional("chrome") String browserName) {
+        if (browserName.equals("chrome")) {
+            this.driver = new ChromeDriver();
+        } else if (browserName.equals("edge")) {
+            this.driver = new EdgeDriver();
+        }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         this.loginPage = new LoginPage(driver);

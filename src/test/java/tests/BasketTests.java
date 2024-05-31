@@ -1,11 +1,7 @@
 package tests;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.List;
 
 public class BasketTests extends BaseTest {
     @Test(retryAnalyzer = Retry.class)
@@ -22,7 +18,7 @@ public class BasketTests extends BaseTest {
     @Test
     public void proceedToCheckoutPage() {
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.clickAddToCartButton("Sauce Labs Backpack");
+        productsPage.clickAddToCartButton("Sauce Labs Onesie");
         productsPage.openBasket();
         basketPage.clickCheckoutButton();
         Assert.assertTrue(checkoutPage.isFirstNameDisplayed());
