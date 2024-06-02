@@ -7,13 +7,13 @@ import pages.LoginPage;
 import pages.ProductsPage;
 
 public class LoginTests extends BaseTest {
-    @Test
+    @Test(groups = {"Smoke"})
     public void positiveLoginTest() {
         loginPage.login("standard_user", "secret_sauce");
         Assert.assertTrue(productsPage.isShoppingCartDisplayed());
     }
 
-    @Test(dataProvider = "negativeLoginTestData")
+    @Test(groups = {"Regression"}, dataProvider = "negativeLoginTestData")
     public void negativeLoginTest(String email, String password, String expectedErrorMessage) {
         loginPage.login(email, password);
         Assert.assertEquals(loginPage.getErrorMessageText(), expectedErrorMessage);
