@@ -1,14 +1,14 @@
 package tests;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
+import utils.DriverFactory;
+import utils.InvokedListener;
+import utils.TestListener;
 
-import java.time.Duration;
-
-@Listeners({TestListener.class})
+@Listeners({TestListener.class, InvokedListener.class})
 public class BaseTest {
     protected WebDriver driver;
     protected LoginPage loginPage;
@@ -19,14 +19,9 @@ public class BaseTest {
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"browserName"})
-    public void setUp(@Optional("chrome") String browserName) {
-        if (browserName.equals("chrome")) {
-            this.driver = new ChromeDriver();
-        } else if (browserName.equals("edge")) {
-            this.driver = new EdgeDriver();
-        }
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    public void setUp(@Optional("chrome") String browserName, ITestContext testContext) throws Exception {
+        driver = DriverFactory.getDriver(browserName);
+        testContext.setAttribute("driver", driver);
         this.loginPage = new LoginPage(driver);
         this.productsPage = new ProductsPage(driver);
         this.singleProductPage = new SingleProductPage(driver);

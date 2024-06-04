@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -18,14 +19,17 @@ public class LoginPage extends BasePage {
         return driver.findElement(ERROR_MESSAGE).getText();
     }
 
+    @Step
     public void setEmailValue(String email) {
         driver.findElement(EMAIL_INPUT).sendKeys(email);
     }
 
+    @Step
     public void setPasswordValue(String password) {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
 
+    @Step
     public void clickLoginButton() {
         driver.findElement(LOGIN_BUTTON).click();
     }
