@@ -2,9 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class BasketPage extends BasePage {
     private static final By CONTINUE_SHOPPING_BUTTON = By.id("continue-shopping");
@@ -22,7 +19,8 @@ public class BasketPage extends BasePage {
     public boolean isAddedToBasket(String productName) {
         return driver.findElement(By.xpath(String.format(ITEM_NAME, productName))).isDisplayed();
     }
-    public int countNumberOfItemsInBasket(){
+
+    public int countNumberOfItemsInBasket() {
         return this.driver.findElements(NUMBER_OF_ITEMS_IN_BASKET).size();
     }
 
