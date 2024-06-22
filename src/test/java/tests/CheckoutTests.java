@@ -9,6 +9,7 @@ public class CheckoutTests extends BaseTest {
     @Description("Long test description with many words")
     @Issue("12345") //ссылка на баг в багтрекинг системе
     @TmsLink("85125") //ссылка на тесткейс
+    @Severity(SeverityLevel.CRITICAL)
     @Link(url = "https://www.google.com/") //просто ссылка на какой-то нужный ресурс
     public void fullScenarioPositiveTest() {
         loginPage.login("standard_user", "secret_sauce");

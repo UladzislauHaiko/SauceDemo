@@ -3,53 +3,63 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class CheckoutPage extends BasePage {
-
-    private static final By FIRST_NAME = By.id("first-name");
-    private static final By LAST_NAME = By.id("last-name");
-    private static final By ZIP_CODE = By.id("postal-code");
-    private static final By CANCEL_BUTTON = By.id("continue-shopping");
-    private static final By CONTINUE_BUTTON = By.id("continue");
-    private static final By FINISH_BUTTON = By.id("finish");
-    private static final By ORDER_CONFIRMATION_BUTTON = By.className("complete-header");
+    @FindBy(id = "first-name")
+    private WebElement firstName;
+    @FindBy(id = "last-name")
+    private WebElement lastName;
+    @FindBy(id = "postal-code")
+    private WebElement zipCode;
+    @FindBy(id = "continue-shopping")
+    private WebElement cancelButton;
+    @FindBy(id = "continue")
+    private WebElement continueButton;
+    @FindBy(id = "finish")
+    private WebElement finishButton;
+    @FindBy(id = "complete-header")
+    private WebElement orderConfirmationButton;
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     public boolean isFirstNameDisplayed() {
-        return this.driver.findElement(FIRST_NAME).isDisplayed();
+        return firstName.isDisplayed();
     }
 
     public void clickContinueButton() {
-        driver.findElement(CONTINUE_BUTTON).click();
+        continueButton.click();
     }
 
     public void clickFinishButton() {
-        driver.findElement(FINISH_BUTTON).click();
+        finishButton.click();
     }
 
     public boolean isOrderConfirmationButtonIsDisplayed() {
-        return this.driver.findElement(ORDER_CONFIRMATION_BUTTON).isDisplayed();
+        return orderConfirmationButton.isDisplayed();
     }
 
     public void setFirstName(String firstName) {
-        driver.findElement(FIRST_NAME).sendKeys(firstName);
+        this.firstName.sendKeys(firstName);
     }
 
     public void setLastName(String lastName) {
-        driver.findElement(LAST_NAME).sendKeys(lastName);
+        this.lastName.sendKeys(lastName);
     }
 
     public void setZipCode(String zipCode) {
-        driver.findElement(ZIP_CODE).sendKeys(zipCode);
+        this.zipCode.sendKeys(zipCode);
     }
 
     @Step("Fill user info: {firstName}, {lastName}, {zipCode}")
     public void setUser(String firstName, String lastName, String zipCode) {
-        driver.findElement(FIRST_NAME).sendKeys(firstName);
-        driver.findElement(LAST_NAME).sendKeys(lastName);
-        driver.findElement(ZIP_CODE).sendKeys(zipCode);
+        this.firstName.sendKeys(firstName);
+        this.lastName.sendKeys(lastName);
+        this.zipCode.sendKeys(zipCode);
     }
 }

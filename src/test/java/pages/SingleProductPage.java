@@ -2,35 +2,44 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class SingleProductPage extends BasePage {
-    private static final By BACK_BUTTON = By.id("back-to-products");
-    private static final By ITEM_NAME = By.className("inventory_details_name");
-    private static final By ITEM_DESCRIPTION = By.className("inventory_details_desc");
-    private static final By ITEM_PRICE = By.className("inventory_details_price");
-    private static final By ADD_TO_CART_BUTTON = By.id("add-to-cart");
+    @FindBy(id = "back-to-products")
+    private WebElement backButton;
+    @FindBy(className = "inventory_details_name")
+    private WebElement itemName;
+    @FindBy(className = "inventory_details_desc")
+    private WebElement itemDescription;
+    @FindBy(className = "inventory_details_price")
+    private WebElement itemPrice;
+    @FindBy(id = "add-to-cart")
+    private WebElement addToCartButton;
 
     public SingleProductPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     public void addItemToBasket() {
-        driver.findElement(ADD_TO_CART_BUTTON).click();
+        addToCartButton.click();
     }
 
     public String getItemPrice() {
-        return driver.findElement(ITEM_PRICE).getText();
+        return itemPrice.getText();
     }
 
     public String getItemName() {
-        return driver.findElement(ITEM_NAME).getText();
+        return itemName.getText();
     }
 
     public String getItemDescription() {
-        return driver.findElement(ITEM_DESCRIPTION).getText();
+        return itemDescription.getText();
     }
 
     public void returnToAllProductsPage() {
-        driver.findElement(BACK_BUTTON).click();
+        backButton.click();
     }
 }
