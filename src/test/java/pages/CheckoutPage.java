@@ -20,7 +20,7 @@ public class CheckoutPage extends BasePage {
     private WebElement continueButton;
     @FindBy(id = "finish")
     private WebElement finishButton;
-    @FindBy(id = "complete-header")
+    @FindBy(css = "[data-test=complete-header]")
     private WebElement orderConfirmationButton;
 
     public CheckoutPage(WebDriver driver) {
