@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    tools {
+        maven "m3"
+    }
+
+    stages {
+        stage('Run tests') {
+            steps {
+                git 'https://github.com/UladzislauHaiko/SauceDemo.git'
+                bat "mvn -Dmaven.test.failure.ignore=true clean test"
+            }
+
+            post {
+                success {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                }
+            }
+        }
+    }
+}
