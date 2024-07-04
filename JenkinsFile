@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    parameters {
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+        choice(name: 'BROWSER', choices: ['chrome', 'firefox', 'safari'], description: 'Select a browser')
+        booleanParam(name: 'IS_HEADLESS', defaultValue: true, description: 'Toggle headless mode')
+    }
+
     tools {
         maven "m3"
     }
@@ -8,8 +14,8 @@ pipeline {
     stages {
         stage('Run tests') {
             steps {
-                git 'https://github.com/UladzislauHaiko/SauceDemo.git'
-                bat "mvn -Dmaven.test.failure.ignore=true clean test"
+            git branch: "${params.BRANCH}", url: 'https://github.com/UladzislauHaiko/SauceDemo.git'
+            bat "mvn -Dmaven.test.failure.ignore=true -Dbrowser=${params.BROWSER} -Dheadless=${IS_HEADLESS} clean test"
             }
 
             post {
