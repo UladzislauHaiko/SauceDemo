@@ -15,7 +15,7 @@ pipeline {
         stage('Run tests') {
             steps {
             git branch: "${params.BRANCH}", url: 'https://github.com/UladzislauHaiko/SauceDemo.git'
-            bat "mvn -Dmaven.test.failure.ignore=true -Dbrowser=${params.BROWSER} -Dheadless=${IS_HEADLESS} clean test"
+            bat "mvn -Dmaven.test.failure.ignore=true -Dbrowser=${params.BROWSER} -Dheadless=${params.IS_HEADLESS} clean test"
             }
 
             post {
